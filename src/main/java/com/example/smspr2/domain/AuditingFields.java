@@ -15,13 +15,14 @@ import java.util.UUID;
 @Getter
 @ToString
 @EntityListeners(AuditingEntityListener.class) // 이게 있어야 자동으로 값 넣어줌
+//이걸 생성했을 때 Listener을 통해
 @MappedSuperclass
 public abstract class AuditingFields {
 
     @Id
     private String id;
 
-    @Column(nullable = false, unique = false) //false 기본 값 명시적으로 선언 //이거는 테이블 컬럼에 속성을 주기 위함입니다. not null
+    @Column(nullable = false) //false 기본 값 명시적으로 선언 //이거는 테이블 컬럼에 속성을 주기 위함입니다. not null
     @Setter
     protected String deleted;
 
@@ -44,4 +45,5 @@ public abstract class AuditingFields {
         this.id = UUID.randomUUID().toString().replace("-", "");
         this.deleted = "N";
     }
+
 }

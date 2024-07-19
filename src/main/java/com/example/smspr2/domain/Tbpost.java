@@ -25,17 +25,19 @@ public class Tbpost extends  AuditingFields{
     @Setter @Column(nullable = true, length = 10000) @Lob private String content;
 
     protected Tbpost(){}
+
     private Tbpost(String title, String author, String content){
         this.title = title;
         this.author = author;
         this.content = content;
     }
     public static Tbpost of(String title, String author, String content){
+
         return new Tbpost(title, author, content);
     }
     public TbpostDto.CreateResDto toCreateResDto(){
-        TbpostDto.CreateResDto createResDto1 = new TbpostDto.CreateResDto();
-        createResDto1.setId(this.getId());
+        /*TbpostDto.CreateResDto createResDto1 = new TbpostDto.CreateResDto();
+        createResDto1.setId(this.getId());*/
         return TbpostDto.CreateResDto.builder().id(this.getId()).build();
     }
 }
