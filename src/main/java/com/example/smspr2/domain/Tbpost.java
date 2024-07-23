@@ -11,6 +11,8 @@ import lombok.Setter;
         ,@Index(columnList = "process")
         ,@Index(columnList = "createdAt")
         ,@Index(columnList = "modifiedAt")
+        //index가 많으면 많을 수록 create할 때 시간이 많이 걸림
+        //db에서 찾을 때 빨리 찾을 수 있음
         })
 @Entity //field 중에 id가 꼭 필요하다
 public class Tbpost extends  AuditingFields{

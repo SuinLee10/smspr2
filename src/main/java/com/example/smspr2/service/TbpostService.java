@@ -10,4 +10,6 @@ public interface TbpostService {
     TbpostDto.SelectResDto detail(TbpostDto.SelectReqDto param);
     List<TbpostDto.SelectResDto> list(TbpostDto.ListReqDto param);
     TbpostDto.PagedListResDto pagedList(TbpostDto.PagedListReqDto param);
+    List<TbpostDto.SelectResDto> scrollList(TbpostDto.ScrollListReqDto param);
+
 }

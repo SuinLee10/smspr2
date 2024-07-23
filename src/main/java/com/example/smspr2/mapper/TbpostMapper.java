@@ -8,5 +8,6 @@ public interface TbpostMapper {
     TbpostDto.SelectResDto detail(TbpostDto.SelectReqDto param);//0개 or 1개
     List<TbpostDto.SelectResDto> list(TbpostDto.ListReqDto param);
     List<TbpostDto.SelectResDto> pagedList(TbpostDto.PagedListReqDto param);
+    List<TbpostDto.SelectResDto> scrollList(TbpostDto.ScrollListReqDto param);
     int pagedListCount(TbpostDto.PagedListReqDto param);
 }
