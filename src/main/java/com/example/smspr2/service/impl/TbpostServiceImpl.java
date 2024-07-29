@@ -31,6 +31,7 @@ public class TbpostServiceImpl implements TbpostService {
     @Override
     public TbpostDto.CreateResDto create(TbpostDto.CreateReqDto param) {
         TbpostDto.CreateResDto createResDto= tbpostRepository.save(param.toEntity()).toCreateResDto();
+
         for(int i = 0; i < param.getTbpostfileUrls().size(); i++){
             tbpostfileService.create(
                     TbpostfileDto.CreateReqDto.builder()

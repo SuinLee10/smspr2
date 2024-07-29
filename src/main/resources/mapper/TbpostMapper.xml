@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.smspr2.mapper.TbpostMapper">
-    <!--mapper tag를 사용하여 위치 지정-->
-    <!--mapper interface에서는 overloading을절대 사용하지 않고 헷갈리지 않게 하나 하나 생성-->
+
+    <!---->
     <select id="detail" parameterType="hashMap" resultType="com.example.smspr2.dto.TbpostDto$DetailResDto">
         SELECT tbpost.id
-                ,tbpost.deleted
-                ,tbpost.process
-                ,tbpost.created_at as createdAt
-                ,tbpost.modified_at as modifiedAt
+             ,tbpost.deleted
+             ,tbpost.process
+             ,tbpost.created_at as createdAt
+             ,tbpost.modified_at as modifiedAt
 
-             ,tbpost.tbuser_id as tbuserId
-                ,tbpost.title
-                ,tbpost.content
+        ,tbpost.tbuser_id as tbuserId
+             ,tbpost.title
+             ,tbpost.content
 
-                ,tbuser.name as tbuserName
-                ,tbuser.nick as tbuserNick
-                ,tbuser.img as tbuserImg
+             ,tbuser.name as tbuserName
+             ,tbuser.nick as tbuserNick
+             ,tbuser.img as tbuserImg
 
         FROM tbpost, tbuser
         WHERE tbpost.id = #{id}
-            AND tbpost.tbuser_id = tbuser.id
+          AND tbpost.tbuser_id = tbuser.id
     </select>
-
-     <select id="list" parameterType="hashMap" resultType="com.example.smspr2.dto.TbpostDto$DetailResDto">
+    <select id="list" parameterType="hashMap" resultType="com.example.smspr2.dto.TbpostDto$DetailResDto">
         SELECT tbpost.id
         FROM tbpost
         WHERE tbpost.id is not NULL
-         <if test = "deleted != null and deleted !=''">AND tbpost.deleted = #{deleted}</if>
-         <if test = "tbuserId != null and tbuserId !=''">AND tbpost.tbuser_id = #{tbuserId}</if>
-         <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
+        <if test = "deleted != null and deleted !=''">AND tbpost.deleted = #{deleted}</if>
+        <if test = "tbuserId != null and tbuserId !=''">AND tbpost.tbuser_id = #{tbuserId}</if>
+        <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
         ORDER BY tbpost.created_at DESC
-     </select>
+    </select>
 
     <select id="scrollList" parameterType="hashMap" resultType="com.example.smspr2.dto.TbpostDto$DetailResDto">
         SELECT tbpost.id
@@ -39,29 +38,28 @@
         WHERE tbpost.id is not NULL
         <if test = "deleted != null and deleted !=''">AND tbpost.deleted = #{deleted}</if>
         <if test = "tbuserId != null and tbuserId !=''">AND tbpost.tbuser_id = #{tbuserId}</if>
-          <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
-        <if test = "orderby == 'created_at'">
+        <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
 
-       <if test = "orderby == 'created_at'">
-            <if test = "orderway == 'desc'">
-                <if test = "cursor != null and cursor !=''">AND STR_TO_DATE(#{cursor}, '%Y-%m-%d %H:%i:%s.%f') > tbpost.created_at</if>
+        <if test = "orderby =='created_at'">
+            <if test = "orderway =='desc'">
+                <if test = "cursor != null and cursor !=''">AND STR_TO_DATE(#{cursor}, '%Y-%m-%d %H:%i:%s.%f') > tbpost.created_at </if>
                 ORDER BY tbpost.created_at DESC
-             </if>
-            <if test = "orderway == 'asc'">
-              <if test = "cursor != null and cursor != ''">AND tbpost.created_at > STR_TO_DATE(#{cursor}, '%Y-%m-%d %H:%i:%s.%f')</if>
+            </if>
+            <if test = "orderway =='asc'">
+                <if test = "cursor != null and cursor !=''">AND tbpost.created_at > STR_TO_DATE(#{cursor}, '%Y-%m-%d %H:%i:%s.%f')</if>
                 ORDER BY tbpost.created_at ASC
             </if>
         </if>
         <if test = "orderby =='title'">
-            <if test = "orderway == 'desc'">
-                <if test = "cursor != null and cursor != ''">AND #{cursor} > tbpost.title</if>
-                 ORDER BY tbpost.title DESC
+            <if test = "orderway =='desc'">
+                <if test = "cursor != null and cursor !=''">AND #{cursor} > tbpost.title</if>
+                ORDER BY tbpost.title DESC
+            </if>
+            <if test = "orderway =='asc'">
+                <if test = "cursor != null and cursor !=''">AND tbpost.title > #{cursor}</if>
+                ORDER BY tbpost.title ASC
+            </if>
         </if>
-        <if test = "orderway == 'asc'">
-            <if test = "cursor != null and cursor != ''">AND tbpost.title > #{cursor}</if>
-            ORDER BY tbpost.title ASC
-        </if>
-    </if>
         LIMIT 0, #{perpage}
     </select>
 
@@ -70,13 +68,13 @@
         FROM tbpost
         WHERE tbpost.id is not NULL
         <if test = "deleted != null and deleted !=''">AND tbpost.deleted = #{deleted}</if>
-        <if test = "tbuserId != null and tbuserId != ''">AND tbpost.tbuser_id = #{tbuserId}</if>
+        <if test = "tbuserId != null and tbuserId !=''">AND tbpost.tbuser_id = #{tbuserId}</if>
         <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
 
-        <if test = "orderby == 'created_at'">ORDER BY tbpost.created_at</if>
-        <if test = "orderby == 'title'">ORDER BY tbpost.title </if>
-        <if test = "orderway == 'asc'">ASC</if>
-        <if test = "orderway == 'desc'">DESC</if>
+        <if test = "orderby =='created_at'">ORDER BY tbpost.created_at </if>
+        <if test = "orderby =='title'">ORDER BY tbpost.title </if>
+        <if test = "orderway =='asc'">ASC</if>
+        <if test = "orderway =='desc'">DESC</if>
         LIMIT #{offset}, #{perpage}
     </select>
     <select id="pagedListCount" parameterType="hashMap" resultType="Integer">
@@ -84,7 +82,7 @@
         FROM tbpost
         WHERE tbpost.id is not NULL
         <if test = "deleted != null and deleted !=''">AND tbpost.deleted = #{deleted}</if>
-        <if test = "tbuserId != null and tbuserId != ''">AND tbpost.tbuser_id = #{tbuserId}</if>
+        <if test = "tbuserId != null and tbuserId !=''">AND tbpost.tbuser_id = #{tbuserId}</if>
         <if test = "title != null and title !=''">AND tbpost.title LIKE CONCAT('%', #{title}, '%')</if>
     </select>
 

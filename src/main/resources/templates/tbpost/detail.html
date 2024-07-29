@@ -146,30 +146,7 @@ content :
         }
     }
     function listener_upload_file(obj_file, filetype){
-        let fileData = new FormData();
-        fileData.append("file", obj_file);
 
-        $.ajax({
-            url: "/api/default/uploadFile",
-            type: "POST",
-            data: fileData ,
-            cache : false,
-            contentType : false,
-            processData : false,
-            success: (data, status, xhr)=>{
-                //alert(xhr.status);
-                switch(xhr.status){
-                    case 201:
-                        create_tbpostfile(file_type, data["url"]);
-                        break;
-                    default:
-                        console.log("no matching status code");
-                }
-            },
-            error: (data)=>{
-                alert("error")
-            },
-        });
     }
     function listener_remove_img(obj_id){
         delete_tbpostfile(obj_id);

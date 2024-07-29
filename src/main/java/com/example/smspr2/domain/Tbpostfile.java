@@ -25,7 +25,7 @@ public class Tbpostfile extends  AuditingFields{
 
     @Setter @Column(nullable = false) private String tbpostId;
     @Setter @Column(nullable = false) private String type;
-    @Setter @Column(nullable = false, length = 400) @Lob private String url;
+    @Setter @Column(nullable = false, length = 400) private String url;
 
     protected Tbpostfile(){}
 

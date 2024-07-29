@@ -14,9 +14,6 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = {"com.example.smspr2.mapper"},sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisConfig {
     @Bean(name="sqlSessionFactory")
-    //build.gradle => jdc
-    //resources => 어떤 jdbc => 속성 지정
-    //dataSource => 가지고 옴
     public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);

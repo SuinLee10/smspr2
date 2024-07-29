@@ -65,6 +65,7 @@ public class FileUpload {
             String root_path = path(request);
             setDir(root_path);
             String filename = setFileName(mf);
+
             FileCopyUtils.copy(mf.getBytes(), new File(root_path + filename));
             returnValue = "/uploadfile/" + filename;
         }catch (Exception e) {

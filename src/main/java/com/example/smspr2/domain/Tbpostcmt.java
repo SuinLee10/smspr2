@@ -2,7 +2,10 @@ package com.example.smspr2.domain;
 
 import com.example.smspr2.dto.TbpostDto;
 import com.example.smspr2.dto.TbpostcmtDto;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.Index;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +15,6 @@ import lombok.Setter;
         ,@Index(columnList = "process")
         ,@Index(columnList = "createdAt")
         ,@Index(columnList = "modifiedAt")
-        //index가 많으면 많을 수록 create할 때 시간이 많이 걸림
-        //db에서 찾을 때 빨리 찾을 수 있음
         })
 @Entity //field 중에 id가 꼭 필요하다
 public class Tbpostcmt extends  AuditingFields{
@@ -25,7 +26,7 @@ public class Tbpostcmt extends  AuditingFields{
 
     @Setter @Column(nullable = false) private String tbpostId;
     @Setter @Column(nullable = false) private String tbuserId;
-    @Setter @Column(nullable = false, length = 400) @Lob private String content;
+    @Setter @Column(nullable = false, length = 400) private String content;
 
     protected Tbpostcmt(){}
 
