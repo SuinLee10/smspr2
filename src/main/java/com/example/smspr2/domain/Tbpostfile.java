@@ -1,6 +1,7 @@
 package com.example.smspr2.domain;
 
 import com.example.smspr2.dto.TbpostDto;
+import com.example.smspr2.dto.TbpostfileDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,31 +16,31 @@ import lombok.Setter;
         //db에서 찾을 때 빨리 찾을 수 있음
         })
 @Entity //field 중에 id가 꼭 필요하다
-public class Tbpost extends  AuditingFields{
+public class Tbpostfile extends  AuditingFields{
     //auditing fields를 extends
     /*@Id private String id;
     @Setter private String deleted;
     @Setter private String createdAt;
     @Setter private String modifiedAt;*/
 
-    @Setter @Column(nullable = false) private String tbuserId;
-    @Setter @Column(nullable = false, length = 400) private String title;
-    @Setter @Column(nullable = true, length = 10000) @Lob private String content;
+    @Setter @Column(nullable = false) private String tbpostId;
+    @Setter @Column(nullable = false) private String type;
+    @Setter @Column(nullable = false, length = 400) @Lob private String url;
 
-    protected Tbpost(){}
+    protected Tbpostfile(){}
 
-    private Tbpost(String tbuserId, String title, String content){
-        this.tbuserId = tbuserId;
-        this.title = title;
-        this.content = content;
+    private Tbpostfile(String tbpostId, String type, String url){
+        this.tbpostId = tbpostId;
+        this.type = type;
+        this.url = url;
     }
-    public static Tbpost of(String tbuserId, String title, String content){
+    public static Tbpostfile of(String tbpostId, String type, String url){
 
-        return new Tbpost(tbuserId, title, content);
+        return new Tbpostfile(tbpostId, type, url);
     }
-    public TbpostDto.CreateResDto toCreateResDto(){
+    public TbpostfileDto.CreateResDto toCreateResDto(){
         /*TbpostDto.CreateResDto createResDto1 = new TbpostDto.CreateResDto();
         createResDto1.setId(this.getId());*/
-        return TbpostDto.CreateResDto.builder().id(this.getId()).build();
+        return TbpostfileDto.CreateResDto.builder().id(this.getId()).build();
     }
 }
