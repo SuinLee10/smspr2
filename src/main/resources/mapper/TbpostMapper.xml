@@ -10,7 +10,7 @@
              ,tbpost.created_at as createdAt
              ,tbpost.modified_at as modifiedAt
 
-        ,tbpost.tbuser_id as tbuserId
+             ,tbpost.tbuser_id as tbuserId
              ,tbpost.title
              ,tbpost.content
 

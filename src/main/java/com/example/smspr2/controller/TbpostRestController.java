@@ -18,7 +18,7 @@ import java.util.List;
 public class TbpostRestController {
     private TbpostService tbpostService;
     public TbpostRestController(TbpostService tbpostService){
-        this.tbpostService = tbpostService;
+        this.tbpostService =tbpostService;
     }
 
     @Operation(summary = "게시글 생성",
@@ -63,7 +63,6 @@ public class TbpostRestController {
     public ResponseEntity<List<TbpostDto.DetailResDto>> list(@Valid TbpostDto.ListReqDto param){
         return ResponseEntity.status(HttpStatus.OK).body(tbpostService.list(param));
     }
-
     @Operation(summary = "게시글 목록 페이지 조회",
             description = "게시글 목록 페이지 조회 컨트롤러<br />"
                     + "@param TbpostDto.PagedListReqDto <br />"
@@ -75,7 +74,7 @@ public class TbpostRestController {
         return ResponseEntity.status(HttpStatus.OK).body(tbpostService.pagedList(param));
     }
     @Operation(summary = "게시글 목록 스크롤 조회",
-            description = "게시글 목록 스크롤 조회 컨트롤러<br />"
+            description = "게시글목록 스크롤 조회 컨트롤러<br />"
                     + "@param TbpostDto.MoreListReqDto <br />"
                     + "@return HttpStatus.OK(200) ResponseEntity\\<TbpostDto.DetailResDto\\> <br />"
                     + "@exception 필수 파라미터 누락하였을 때 등 <br />"

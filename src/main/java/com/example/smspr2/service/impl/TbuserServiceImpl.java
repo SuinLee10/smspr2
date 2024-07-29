@@ -16,8 +16,9 @@ public class TbuserServiceImpl implements TbuserService {
     private final TbuserRepository tbuserRepository;
     private final TbuserMapper tbuserMapper;
     public TbuserServiceImpl(
-            TbuserRepository tbuserRepository,
-            TbuserMapper tbuserMapper) {
+            TbuserRepository tbuserRepository
+            ,TbuserMapper tbuserMapper)
+    {
         this.tbuserRepository = tbuserRepository;
         this.tbuserMapper = tbuserMapper;
     }
@@ -76,7 +77,8 @@ public class TbuserServiceImpl implements TbuserService {
 
     @Override
     public List<TbuserDto.DetailResDto> list(TbuserDto.ListReqDto param) {
-        return detailList(tbuserMapper.list(param));
+       return detailList(tbuserMapper.list(param));
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.smspr2.mapper;
 
 import com.example.smspr2.dto.DefaultDto;
 import com.example.smspr2.dto.TbpostfileDto;
+
 import java.util.List;
 
 public interface TbpostfileMapper {
